@@ -93,12 +93,37 @@ public class DeliveryDBAdapter {
         return sqlDB.delete(DATABASE_TABLE, KEY_ADDRESS+"='"+address+"'", null) > 0;
     }
 
+    public boolean deleteAllMilk() {
+        Log.i("Delete called.", "value___all");
+        return sqlDB.delete(DATABASE_TABLE, null, null) > 0;
+    }
+
     public Cursor fetchAllMilk() {
         return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, null, null, null, null, null);
     }
 
-    public Cursor fetchRowMilk(long rowid) {
-        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_ROWID+"="+rowid, null, null, null, null);
+    public Cursor fetchAddressMilk(String address) {
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_ADDRESS+"='"+address+"'", null, null, null, null);
+    }
+
+    public Cursor fetchMonsdayMilk() {
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_MON+"='true'", null, null, null, null);
+    }
+
+    public Cursor fetchTuesdayMilk() {
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_TUE+"='true'", null, null, null, null);
+    }
+
+    public Cursor fetchWedesdayMilk() {
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_WED+"='true'", null, null, null, null);
+    }
+
+    public Cursor fetchThursdayMilk() {
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_THU+"='true'", null, null, null, null);
+    }
+
+    public Cursor fetchFridayMilk() {
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER, KEY_MON, KEY_TUE, KEY_WED, KEY_THU, KEY_FRI}, KEY_FRI+"='true'", null, null, null, null);
     }
 
     /*public Cursor fetch(long rowId) throws SQLException {
@@ -114,7 +139,7 @@ public class DeliveryDBAdapter {
         return count;
     }
 
-    public boolean updateWeapon(long rowId, String address, String password, String milk, int number, String mon, String tue, String wed, String thu, String fri) {
+    public boolean updateMilk(String undo_address, String address, String password, String milk, int number, String mon, String tue, String wed, String thu, String fri) {
         ContentValues values = new ContentValues();
         values.put(KEY_ADDRESS, address);
         values.put(KEY_PASSWORD, password);
@@ -125,6 +150,6 @@ public class DeliveryDBAdapter {
         values.put(KEY_WED, wed);
         values.put(KEY_THU, thu);
         values.put(KEY_FRI, fri);
-        return sqlDB.update(DATABASE_TABLE, values, KEY_ROWID+"="+rowId, null) > 0;
+        return sqlDB.update(DATABASE_TABLE, values, KEY_ADDRESS+"='"+undo_address+"'", null) > 0;
     }
 }

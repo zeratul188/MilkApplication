@@ -41,7 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="현관문 비밀번호"
+                android:hint="비밀번호 여부 체크"
                 android:fontFamily="@font/the140"
                 android:gravity="center"
                 android:padding="10dp"

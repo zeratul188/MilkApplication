@@ -72,6 +72,8 @@ public class HomeFragment extends Fragment {
                         deliveryList.remove(index);
                         deliveryAdatper.notifyDataSetChanged();
                         toast("'"+str+"배달 완료했습니다.", false);
+                        if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
+                        else txtEmpty.setVisibility(View.INVISIBLE);
                     }
                 });
                 builder.setNegativeButton("취소", null);
@@ -88,13 +90,15 @@ public class HomeFragment extends Fragment {
                 builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("초기화");
                 builder.setMessage("모든 배달 과정이 초기화됩니다. 초기화하시겠습니까?");
-                builder.setPositiveButton("배달 완료", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("초기화", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deliveryList.clear();
                         loadData();
                         deliveryAdatper.notifyDataSetChanged();
                         toast("초기화되었습니다.", false);
+                        if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
+                        else txtEmpty.setVisibility(View.INVISIBLE);
                     }
                 });
                 builder.setNegativeButton("취소", null);
@@ -123,6 +127,10 @@ public class HomeFragment extends Fragment {
         loadData();
         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
         else txtEmpty.setVisibility(View.INVISIBLE);
+    }
+
+    public DeliveryAdapter getDeliveryAdatper() {
+        return deliveryAdatper;
     }
 
     @Override

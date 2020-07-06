@@ -61,8 +61,6 @@ public class DeliveryAdapter extends BaseAdapter {
         txtPassword.setText(deliveryList.get(position).getPassword());
         txtNumber.setText(Integer.toString(deliveryList.get(position).getNumber()));
 
-        final int index = position;
-
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,12 +70,12 @@ public class DeliveryAdapter extends BaseAdapter {
                 builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        toast("'"+deliveryList.get(index).getAddress()+"'을 삭제하였습니다.", false);
+                        toast("'"+deliveryList.get(position).getAddress()+"'을 삭제하였습니다.", false);
 
                         deliveryDBAdapter.open();
-                        deliveryDBAdapter.deleteMilk(deliveryList.get(index).getAddress());
+                        deliveryDBAdapter.deleteMilk(deliveryList.get(position).getAddress());
                         deliveryDBAdapter.close();
-                        deliveryList.remove(index);
+                        deliveryList.remove(position);
 
                         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
                         else txtEmpty.setVisibility(View.INVISIBLE);
@@ -97,7 +95,7 @@ public class DeliveryAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditActivity.class);
-                intent.putExtra("index", index+1);
+                intent.putExtra("address", deliveryList.get(position).getAddress());
                 context.startActivity(intent);
             }
         });

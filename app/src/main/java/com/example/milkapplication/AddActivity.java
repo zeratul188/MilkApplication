@@ -27,6 +27,8 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.addlayout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        setTitle("배달지 추가");
+
         edtAddress = findViewById(R.id.edtAddress);
         edtPassword = findViewById(R.id.edtPassword);
         edtMilk = findViewById(R.id.edtMilk);
@@ -53,10 +55,12 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    edtPassword.setHint("비밀번호 여부 체크");
+                    chkPassword.setTextColor(Color.parseColor("#f0f0f0"));
+                    edtPassword.setHint("현관문 비밀번호");
                     edtPassword.setEnabled(true);
                 } else {
-                    edtPassword.setHint("현관문 비밀번호");
+                    chkPassword.setTextColor(Color.parseColor("#444444"));
+                    edtPassword.setHint("비밀번호 여부 체크");
                     edtPassword.setText("");
                     edtPassword.setEnabled(false);
                 }

@@ -10,26 +10,6 @@
         android:layout_weight="1"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/txtAddressUndo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="[기존 배달지 주소]"
-            android:textSize="20sp"
-            android:textColor="#444444"
-            android:fontFamily="@font/the110"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"/>
-        <TextView
-            android:id="@+id/txtPasswordUndo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="[기존 비밀번호]"
-            android:textSize="15sp"
-            android:textColor="#444444"
-            android:fontFamily="@font/the110"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="배달지 입력"
@@ -63,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="현관문 비밀번호"
+                android:hint="비밀번호 여부 체크"
                 android:fontFamily="@font/the140"
                 android:gravity="center"
                 android:padding="10dp"
@@ -86,25 +66,6 @@
                 android:fontFamily="@font/the110"
                 android:textStyle="bold"/>
         </LinearLayout>
-        <TextView
-            android:id="@+id/txtMilkUndo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="[기존 우유 종류]"
-            android:textSize="20sp"
-            android:textColor="#444444"
-            android:fontFamily="@font/the110"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"/>
-        <TextView
-            android:id="@+id/txtNumberUndo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="[기존 우유 갯수]"
-            android:textSize="15sp"
-            android:textColor="#444444"
-            android:fontFamily="@font/the110"
-            android:layout_marginBottom="20dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MilkApplication</string>
+    <string name="app_name">Atlas 배달 명단</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -7,10 +7,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">월요일 배달명단</string>
-    <string name="menu_gallery">화요일 배달명단</string>
-    <string name="menu_slideshow">수요일 배달명단</string>
-    <string name="menu_tools">목요일 배달명단</string>
-    <string name="menu_share">금요일 배달명단</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_home">전체 배달명단</string>
+    <string name="menu_gallery">월요일 배달명단</string>
+    <string name="menu_slideshow">화요일 배달명단</string>
+    <string name="menu_tools">수요일 배달명단</string>
+    <string name="menu_share">목요일 배달명단</string>
+    <string name="menu_send">금요일 배달명단</string>
 </resources>
