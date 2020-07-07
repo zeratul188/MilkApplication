@@ -34,6 +34,8 @@ public class HomeFragment extends Fragment {
     private TextView txtEmpty;
     private ArrayList<Delivery> deliveryList;
 
+    private boolean added = false;
+
     private DeliveryDBAdapter deliveryDBAdapter;
     private DeliveryAdapter deliveryAdatper;
 
@@ -55,8 +57,10 @@ public class HomeFragment extends Fragment {
 
         deliveryList = new ArrayList<Delivery>();
         loadData();
-        deliveryAdatper = new DeliveryAdapter(getActivity(), deliveryList, deliveryDBAdapter, txtEmpty);
+        deliveryAdatper = new DeliveryAdapter(getActivity(), deliveryList, deliveryDBAdapter, txtEmpty, this);
         listView.setAdapter(deliveryAdatper);
+
+        refresh();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -114,28 +118,34 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddActivity.class);
                 getActivity().startActivity(intent);
+                added = true;
             }
         });
 
         return root;
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
-        deliveryList.clear();
-        loadData();
-        if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
-        else txtEmpty.setVisibility(View.INVISIBLE);
-    }
-
-    public DeliveryAdapter getDeliveryAdatper() {
-        return deliveryAdatper;
-    }
+        refresh();
+        toast("onStart()", false);
+    }*/
 
     @Override
     public void onResume() {
         super.onResume();
+        if (added) {
+            refresh();
+            added = false;
+        }
+    }
+
+    public void setAdded(boolean added) {
+        this.added = added;
+    }
+
+    public void refresh() {
         deliveryList.clear();
         loadData();
         deliveryAdatper.notifyDataSetChanged();

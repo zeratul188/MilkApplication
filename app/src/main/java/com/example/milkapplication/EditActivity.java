@@ -14,7 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditActivity extends AppCompatActivity {
+import com.example.milkapplication.ui.gallery.GalleryFragment;
+import com.example.milkapplication.ui.home.HomeFragment;
+
+import java.io.Serializable;
+
+public class EditActivity extends AppCompatActivity implements Serializable {
 
     private EditText edtAddress, edtPassword, edtMilk, edtNumber;
     private CheckBox chkPassword;

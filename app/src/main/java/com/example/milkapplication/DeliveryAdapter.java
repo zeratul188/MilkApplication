@@ -11,6 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.milkapplication.ui.gallery.GalleryFragment;
+import com.example.milkapplication.ui.home.HomeFragment;
+import com.example.milkapplication.ui.send.SendFragment;
+import com.example.milkapplication.ui.share.ShareFragment;
+import com.example.milkapplication.ui.slideshow.SlideshowFragment;
+import com.example.milkapplication.ui.tools.ToolsFragment;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DeliveryAdapter extends BaseAdapter {
@@ -19,15 +27,17 @@ public class DeliveryAdapter extends BaseAdapter {
     private ArrayList<Delivery> deliveryList;
     private DeliveryDBAdapter deliveryDBAdapter;
     private TextView txtEmpty;
+    private Object object = null;
 
     private AlertDialog alertDialog;
     private AlertDialog.Builder builder;
 
-    public DeliveryAdapter(Context context, ArrayList<Delivery> deliveryList, DeliveryDBAdapter deliveryDBAdapter, TextView txtEmpty) {
+    public DeliveryAdapter(Context context, ArrayList<Delivery> deliveryList, DeliveryDBAdapter deliveryDBAdapter, TextView txtEmpty, Object object) {
         this.context = context;
         this.deliveryList = deliveryList;
         this.deliveryDBAdapter = deliveryDBAdapter;
         this.txtEmpty = txtEmpty;
+        this.object = object;
     }
 
     @Override
@@ -94,6 +104,14 @@ public class DeliveryAdapter extends BaseAdapter {
         imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (object instanceof HomeFragment) ((HomeFragment) object).setAdded(true);
+                else if (object instanceof GalleryFragment) ((GalleryFragment) object).setAdded(true);
+                else if (object instanceof SendFragment) ((SendFragment) object).setAdded(true);
+                else if (object instanceof ShareFragment) ((ShareFragment) object).setAdded(true);
+                else if (object instanceof SlideshowFragment) ((SlideshowFragment) object).setAdded(true);
+                else if (object instanceof ToolsFragment) ((ToolsFragment) object).setAdded(true);
+                else toast("Error null", false);
+
                 Intent intent = new Intent(context, EditActivity.class);
                 intent.putExtra("address", deliveryList.get(position).getAddress());
                 context.startActivity(intent);
