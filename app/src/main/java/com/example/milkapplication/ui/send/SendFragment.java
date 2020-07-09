@@ -23,6 +23,7 @@ import com.example.milkapplication.AddActivity;
 import com.example.milkapplication.Delivery;
 import com.example.milkapplication.DeliveryAdapter;
 import com.example.milkapplication.DeliveryDBAdapter;
+import com.example.milkapplication.DeliveryFridayDBAdapter;
 import com.example.milkapplication.R;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class SendFragment extends Fragment {
 
     private boolean added = false;
 
-    private DeliveryDBAdapter deliveryDBAdapter;
+    private DeliveryFridayDBAdapter deliveryDBAdapter;
     private DeliveryAdapter deliveryAdatper;
 
     private AlertDialog alertDialog, edit_alertDialog;
@@ -56,11 +57,11 @@ public class SendFragment extends Fragment {
         btnReset = root.findViewById(R.id.btnReset);
         txtEmpty = root.findViewById(R.id.txtEmpty);
 
-        deliveryDBAdapter = new DeliveryDBAdapter(getActivity());
+        deliveryDBAdapter = new DeliveryFridayDBAdapter(getActivity());
 
         deliveryList = new ArrayList<Delivery>();
         loadData();
-        deliveryAdatper = new DeliveryAdapter(getActivity(), deliveryList, deliveryDBAdapter, txtEmpty, this);
+        deliveryAdatper = new DeliveryAdapter(getActivity(), deliveryList, txtEmpty, this);
         listView.setAdapter(deliveryAdatper);
 
         txtMax = root.findViewById(R.id.txtMax);
@@ -84,7 +85,7 @@ public class SendFragment extends Fragment {
                         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
                         else txtEmpty.setVisibility(View.INVISIBLE);
                         deliveryDBAdapter.open();
-                        txtMax.setText("("+deliveryList.size()+"/"+deliveryDBAdapter.getFRICount()+")");
+                        txtMax.setText("("+deliveryList.size()+"/"+deliveryDBAdapter.getCount()+")");
                         deliveryDBAdapter.close();
                     }
                 });
@@ -189,25 +190,20 @@ public class SendFragment extends Fragment {
         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
         else txtEmpty.setVisibility(View.INVISIBLE);
         deliveryDBAdapter.open();
-        txtMax.setText("("+deliveryList.size()+"/"+deliveryDBAdapter.getFRICount()+")");
+        txtMax.setText("("+deliveryList.size()+"/"+deliveryDBAdapter.getCount()+")");
         deliveryDBAdapter.close();
     }
 
     private void loadData() {
         deliveryDBAdapter.open();
-        Cursor cursor = deliveryDBAdapter.fetchFridayMilk();
+        Cursor cursor = deliveryDBAdapter.fetchAllMilk();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String address = cursor.getString(1);
             String password = cursor.getString(2);
             String milk = cursor.getString(3);
             int number = cursor.getInt(4);
-            boolean mon = Boolean.parseBoolean(cursor.getString(5));
-            boolean tue = Boolean.parseBoolean(cursor.getString(6));
-            boolean wed = Boolean.parseBoolean(cursor.getString(7));
-            boolean thu = Boolean.parseBoolean(cursor.getString(8));
-            boolean fri = Boolean.parseBoolean(cursor.getString(9));
-            Delivery delivery = new Delivery(address, password, milk, number, mon, tue, wed, thu, fri);
+            Delivery delivery = new Delivery(address, password, milk, number);
             deliveryList.add(delivery);
             cursor.moveToNext();
         }

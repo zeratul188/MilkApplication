@@ -10,23 +10,26 @@ import android.util.Log;
 
 import static android.content.ContentValues.TAG;
 
-public class DeliveryDBAdapter {
+public class DeliveryWednesdayDBAdapter {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_ADDRESS = "ADDRESS";
     public static final String KEY_PASSWORD = "PASSWORD";
+    public static final String KEY_MILK = "MILK";
+    public static final String KEY_NUMBER = "NUMBER";
 
-    private static final String DATABASE_CREATE = "create table DELIVERY (_id integer primary key, "
-            +"ADDRESS text not null, PASSWORD text);";
+    private static final String DATABASE_CREATE = "create table DELIVERY_WEDNESDAY (_id integer primary key, "
+            +"ADDRESS text not null, PASSWORD text, "
+            +"MILK text, NUMBER int);";
 
-    private static final String DATABASE_NAME = "MILKDELIVERY";
-    private static final String DATABASE_TABLE = "DELIVERY";
+    private static final String DATABASE_NAME = "MILKDELIVERY_WEDNESDAY";
+    private static final String DATABASE_TABLE = "DELIVERY_WEDNESDAY";
     private static final int DATABASE_VERSION = 2;
     private final Context mCtx;
 
     private DatabaseHelper myDBHelper;
     private SQLiteDatabase sqlDB;
 
-    public DeliveryDBAdapter(Context mCtx) {
+    public DeliveryWednesdayDBAdapter(Context mCtx) {
         this.mCtx = mCtx;
     }
 
@@ -46,12 +49,12 @@ public class DeliveryDBAdapter {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion
                     + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS DELIVERY");
+            db.execSQL("DROP TABLE IF EXISTS DELIVERY_WEDNESDAY");
             onCreate(db);
         }
     }
 
-    public DeliveryDBAdapter open() throws SQLException {
+    public DeliveryWednesdayDBAdapter open() throws SQLException {
         myDBHelper = new DatabaseHelper(mCtx);
         sqlDB = myDBHelper.getWritableDatabase();
         return this;
@@ -65,10 +68,12 @@ public class DeliveryDBAdapter {
         myDBHelper.close();
     }
 
-    public long insertMilk(String address, String password) {
+    public long insertMilk(String address, String password, String milk, int number) {
         ContentValues values = new ContentValues();
         values.put(KEY_ADDRESS, address);
         values.put(KEY_PASSWORD, password);
+        values.put(KEY_MILK, milk);
+        values.put(KEY_NUMBER, number);
         return sqlDB.insert(DATABASE_TABLE, null, values);
     }
 
@@ -83,7 +88,7 @@ public class DeliveryDBAdapter {
     }
 
     public Cursor fetchAllMilk() {
-        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD}, null, null, null, null, null);
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER}, null, null, null, null, null);
     }
 
     /*public Cursor fetch(long rowId) throws SQLException {
@@ -109,14 +114,15 @@ public class DeliveryDBAdapter {
     }
 
     public Cursor fetchAddressMilk(String address) {
-        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD}, KEY_ADDRESS+" = '"+address+"'", null, null, null, null);
+        return sqlDB.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ADDRESS, KEY_PASSWORD, KEY_MILK, KEY_NUMBER}, KEY_ADDRESS+" = '"+address+"'", null, null, null, null);
     }
 
-
-    public boolean updateMilk(String undo_address, String address, String password) {
+    public boolean updateMilk(String undo_address, String address, String password, String milk, int number) {
         ContentValues values = new ContentValues();
         values.put(KEY_ADDRESS, address);
         values.put(KEY_PASSWORD, password);
+        values.put(KEY_MILK, milk);
+        values.put(KEY_NUMBER, number);
         return sqlDB.update(DATABASE_TABLE, values, KEY_ADDRESS+"='"+undo_address+"'", null) > 0;
     }
 }

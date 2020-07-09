@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
 
     private DeliveryDBAdapter deliveryDBAdapter;
-    private DeliveryAdapter deliveryAdapter;
+    private DeliveryMonsdayDBAdapter monsdayDBAdapter;
+    private DeliveryTuesdayDBAdapter tuesdayDBAdapter;
+    private DeliveryWednesdayDBAdapter wednesdayDBAdapter;
+    private DeliveryThursdayDBAdapter thursdayDBAdapter;
+    private DeliveryFridayDBAdapter fridayDBAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         deliveryDBAdapter = new DeliveryDBAdapter(this);
+        monsdayDBAdapter = new DeliveryMonsdayDBAdapter(this);
+        tuesdayDBAdapter = new DeliveryTuesdayDBAdapter(this);
+        wednesdayDBAdapter = new DeliveryWednesdayDBAdapter(this);
+        thursdayDBAdapter = new DeliveryThursdayDBAdapter(this);
+        fridayDBAdapter = new DeliveryFridayDBAdapter(this);
     }
 
     @Override
@@ -89,6 +98,21 @@ public class MainActivity extends AppCompatActivity {
                         deliveryDBAdapter.open();
                         deliveryDBAdapter.deleteAllMilk();
                         deliveryDBAdapter.close();
+                        monsdayDBAdapter.open();
+                        monsdayDBAdapter.deleteAllMilk();
+                        monsdayDBAdapter.close();
+                        tuesdayDBAdapter.open();
+                        tuesdayDBAdapter.deleteAllMilk();
+                        tuesdayDBAdapter.close();
+                        wednesdayDBAdapter.open();
+                        wednesdayDBAdapter.deleteAllMilk();
+                        wednesdayDBAdapter.close();
+                        thursdayDBAdapter.open();
+                        thursdayDBAdapter.deleteAllMilk();
+                        thursdayDBAdapter.close();
+                        fridayDBAdapter.open();
+                        fridayDBAdapter.deleteAllMilk();
+                        fridayDBAdapter.close();
                         alertDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "모든 데이터가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                         builder.setTitle(null);

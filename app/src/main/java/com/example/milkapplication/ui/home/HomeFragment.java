@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.milkapplication.AddActivity;
 import com.example.milkapplication.Delivery;
 import com.example.milkapplication.DeliveryAdapter;
+import com.example.milkapplication.DeliveryAllAdapter;
 import com.example.milkapplication.DeliveryDBAdapter;
 import com.example.milkapplication.R;
 
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment {
     private boolean added = false;
 
     private DeliveryDBAdapter deliveryDBAdapter;
-    private DeliveryAdapter deliveryAdatper;
+    private DeliveryAllAdapter deliveryAdatper;
 
     private AlertDialog alertDialog, edit_alertDialog;
     private AlertDialog.Builder builder, edit_builder;
@@ -59,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         deliveryList = new ArrayList<Delivery>();
         loadData();
-        deliveryAdatper = new DeliveryAdapter(getActivity(), deliveryList, deliveryDBAdapter, txtEmpty, this);
+        deliveryAdatper = new DeliveryAllAdapter(getActivity(), deliveryList, deliveryDBAdapter, txtEmpty, this);
         listView.setAdapter(deliveryAdatper);
 
         txtMax = root.findViewById(R.id.txtMax);
@@ -88,39 +89,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
                 builder.setNegativeButton("취소", null);
-                builder.setNeutralButton("금일 우유 수정", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        edit_view = getLayoutInflater().inflate(R.layout.editdialog, null);
-
-                        final EditText edtMilk = edit_view.findViewById(R.id.edtMilk);
-                        final EditText edtNumber = edit_view.findViewById(R.id.edtNumber);
-
-                        edtMilk.setText(deliveryList.get(index).getMilk());
-                        edtNumber.setText(Integer.toString(deliveryList.get(index).getNumber()));
-
-                        edit_builder = new AlertDialog.Builder(getActivity());
-                        edit_builder.setView(edit_view);
-                        edit_builder.setTitle("금일 우유 수정");
-                        edit_builder.setPositiveButton("수정", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (String.valueOf(edtMilk.getText()).equals("") || String.valueOf(edtNumber.getText()).equals("")) toast("우유 종류와 갯수 모두 입력해주십시오.", false);
-                                else {
-                                    deliveryList.get(index).setMilk(String.valueOf(edtMilk.getText()));
-                                    deliveryList.get(index).setNumber(Integer.parseInt(String.valueOf(edtNumber.getText())));
-                                    deliveryAdatper.notifyDataSetChanged();
-                                    toast("금일만 "+deliveryList.get(index).getAddress()+" 우유를 수정하였습니다.", false);
-                                }
-                            }
-                        });
-                        edit_builder.setNegativeButton("취소", null);
-
-                        edit_alertDialog = edit_builder.create();
-                        edit_alertDialog.setCancelable(false);
-                        edit_alertDialog.show();
-                    }
-                });
 
                 alertDialog = builder.create();
                 alertDialog.setCancelable(false);
@@ -199,14 +167,7 @@ public class HomeFragment extends Fragment {
         while (!cursor.isAfterLast()) {
             String address = cursor.getString(1);
             String password = cursor.getString(2);
-            String milk = cursor.getString(3);
-            int number = cursor.getInt(4);
-            boolean mon = Boolean.parseBoolean(cursor.getString(5));
-            boolean tue = Boolean.parseBoolean(cursor.getString(6));
-            boolean wed = Boolean.parseBoolean(cursor.getString(7));
-            boolean thu = Boolean.parseBoolean(cursor.getString(8));
-            boolean fri = Boolean.parseBoolean(cursor.getString(9));
-            Delivery delivery = new Delivery(address, password, milk, number, mon, tue, wed, thu, fri);
+            Delivery delivery = new Delivery(address, password, "null", 0);
             deliveryList.add(delivery);
             cursor.moveToNext();
         }

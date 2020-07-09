@@ -3,18 +3,12 @@ package com.example.milkapplication;
 public class Delivery {
     private String address, password, milk;
     private int number;
-    private boolean mon, tue, wed, thu, fri;
 
-    public Delivery(String address, String password, String milk, int number, boolean mon, boolean tue, boolean wed, boolean thu, boolean fri) {
+    public Delivery(String address, String password, String milk, int number) {
         this.address = address;
         this.password = password;
         this.milk = milk;
         this.number = number;
-        this.mon = mon;
-        this.tue = tue;
-        this.wed = wed;
-        this.thu = thu;
-        this.fri = fri;
     }
 
     public String getAddress() {

@@ -20,7 +20,7 @@ import com.example.milkapplication.ui.tools.ToolsFragment;
 
 import java.util.ArrayList;
 
-public class DeliveryAdapter extends BaseAdapter {
+public class DeliveryAllAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<Delivery> deliveryList;
@@ -37,9 +37,10 @@ public class DeliveryAdapter extends BaseAdapter {
     private AlertDialog alertDialog;
     private AlertDialog.Builder builder;
 
-    public DeliveryAdapter(Context context, ArrayList<Delivery> deliveryList, TextView txtEmpty, Object object) {
+    public DeliveryAllAdapter(Context context, ArrayList<Delivery> deliveryList, DeliveryDBAdapter deliveryDBAdapter, TextView txtEmpty, Object object) {
         this.context = context;
         this.deliveryList = deliveryList;
+        this.deliveryDBAdapter = deliveryDBAdapter;
         this.txtEmpty = txtEmpty;
         this.object = object;
         deliveryDBAdapter = new DeliveryDBAdapter(context);
@@ -67,19 +68,15 @@ public class DeliveryAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        if (convertView == null) convertView = View.inflate(context, R.layout.item, null);
+        if (convertView == null) convertView = View.inflate(context, R.layout.item_all, null);
 
-        TextView txtMilk = convertView.findViewById(R.id.txtMilk);
         TextView txtAddress = convertView.findViewById(R.id.txtAddress);
         TextView txtPassword = convertView.findViewById(R.id.txtPasssword);
-        TextView txtNumber = convertView.findViewById(R.id.txtNumber);
         ImageView imgDelete = convertView.findViewById(R.id.imgDelete);
         ImageView imgEdit = convertView.findViewById(R.id.imgEdit);
 
         txtAddress.setText(deliveryList.get(position).getAddress());
-        txtMilk.setText(deliveryList.get(position).getMilk());
         txtPassword.setText(deliveryList.get(position).getPassword());
-        txtNumber.setText(Integer.toString(deliveryList.get(position).getNumber()));
 
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override

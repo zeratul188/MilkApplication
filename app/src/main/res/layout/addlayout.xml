@@ -67,7 +67,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="우유 입력"
+            android:text="배달 요일 선택 / 우유 입력"
             android:textSize="20sp"
             android:textColor="#222222"
             android:fontFamily="@font/the110"
@@ -77,48 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
-            <EditText
-                android:id="@+id/edtMilk"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:hint="우유 종류"
-                android:fontFamily="@font/the140"
-                android:gravity="center"
-                android:padding="10dp"
-                android:textColorHint="#999999"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/customedit"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/edtNumber"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="우유 갯수"
-                android:fontFamily="@font/the140"
-                android:inputType="number"
-                android:gravity="center"
-                android:padding="10dp"
-                android:textColorHint="#999999"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/customedit"
-                android:textSize="20sp"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="배달 요일 선택"
-            android:textSize="20sp"
-            android:textColor="#222222"
-            android:fontFamily="@font/the110"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="10dp">
             <CheckBox
                 android:id="@+id/chkWeek1"
                 android:layout_width="0dp"
@@ -131,9 +90,44 @@
                 android:background="@drawable/checkcustom"
                 android:padding="10dp"
                 android:fontFamily="@font/the110"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtMilk1"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:hint="우유 종류"
+                android:fontFamily="@font/the140"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/customedit"
+                android:enabled="false"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/edtNumber1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="갯수"
+                android:fontFamily="@font/the140"
+                android:inputType="number"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginLeft="5dp"
+                android:enabled="false"
+                android:background="@drawable/customedit"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
             <CheckBox
                 android:id="@+id/chkWeek2"
                 android:layout_width="0dp"
@@ -146,9 +140,44 @@
                 android:background="@drawable/checkcustom"
                 android:padding="10dp"
                 android:fontFamily="@font/the110"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtMilk2"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:hint="우유 종류"
+                android:fontFamily="@font/the140"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/customedit"
+                android:enabled="false"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/edtNumber2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="갯수"
+                android:fontFamily="@font/the140"
+                android:inputType="number"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginLeft="5dp"
+                android:enabled="false"
+                android:background="@drawable/customedit"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
             <CheckBox
                 android:id="@+id/chkWeek3"
                 android:layout_width="0dp"
@@ -161,9 +190,44 @@
                 android:background="@drawable/checkcustom"
                 android:padding="10dp"
                 android:fontFamily="@font/the110"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtMilk3"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:hint="우유 종류"
+                android:fontFamily="@font/the140"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/customedit"
+                android:enabled="false"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/edtNumber3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="갯수"
+                android:fontFamily="@font/the140"
+                android:inputType="number"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginLeft="5dp"
+                android:enabled="false"
+                android:background="@drawable/customedit"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
             <CheckBox
                 android:id="@+id/chkWeek4"
                 android:layout_width="0dp"
@@ -176,9 +240,44 @@
                 android:background="@drawable/checkcustom"
                 android:padding="10dp"
                 android:fontFamily="@font/the110"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtMilk4"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:hint="우유 종류"
+                android:fontFamily="@font/the140"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/customedit"
+                android:enabled="false"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/edtNumber4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="갯수"
+                android:fontFamily="@font/the140"
+                android:inputType="number"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginLeft="5dp"
+                android:enabled="false"
+                android:background="@drawable/customedit"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
             <CheckBox
                 android:id="@+id/chkWeek5"
                 android:layout_width="0dp"
@@ -191,8 +290,38 @@
                 android:background="@drawable/checkcustom"
                 android:padding="10dp"
                 android:fontFamily="@font/the110"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtMilk5"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:hint="우유 종류"
+                android:fontFamily="@font/the140"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/customedit"
+                android:enabled="false"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/edtNumber5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="갯수"
+                android:fontFamily="@font/the140"
+                android:inputType="number"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginLeft="5dp"
+                android:enabled="false"
+                android:background="@drawable/customedit"
+                android:textSize="20sp"/>
         </LinearLayout>
     </LinearLayout>
 
