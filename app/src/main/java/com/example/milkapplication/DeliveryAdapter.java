@@ -18,7 +18,6 @@ import com.example.milkapplication.ui.share.ShareFragment;
 import com.example.milkapplication.ui.slideshow.SlideshowFragment;
 import com.example.milkapplication.ui.tools.ToolsFragment;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DeliveryAdapter extends BaseAdapter {
@@ -89,6 +88,14 @@ public class DeliveryAdapter extends BaseAdapter {
 
                         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
                         else txtEmpty.setVisibility(View.INVISIBLE);
+
+                        if (object instanceof HomeFragment) ((HomeFragment) object).refresh();
+                        else if (object instanceof GalleryFragment) ((GalleryFragment) object).refresh();
+                        else if (object instanceof SendFragment) ((SendFragment) object).refresh();
+                        else if (object instanceof ShareFragment) ((ShareFragment) object).refresh();
+                        else if (object instanceof SlideshowFragment) ((SlideshowFragment) object).refresh();
+                        else if (object instanceof ToolsFragment) ((ToolsFragment) object).refresh();
+                        else toast("Error null", false);
 
                         notifyDataSetChanged();
                     }

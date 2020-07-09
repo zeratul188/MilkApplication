@@ -138,6 +138,36 @@ public class DeliveryDBAdapter {
         if (cursor != null) count = cursor.getCount();
         return count;
     }
+    public int getMONCount() {
+        Cursor cursor = sqlDB.rawQuery("select * from "+DATABASE_TABLE+" where +"+KEY_MON+" = 'true';", null);
+        int count = 0;
+        if (cursor != null) count = cursor.getCount();
+        return count;
+    }
+    public int getTUECount() {
+        Cursor cursor = sqlDB.rawQuery("select * from "+DATABASE_TABLE+" where +"+KEY_TUE+" = 'true';", null);
+        int count = 0;
+        if (cursor != null) count = cursor.getCount();
+        return count;
+    }
+    public int getWEDCount() {
+        Cursor cursor = sqlDB.rawQuery("select * from "+DATABASE_TABLE+" where +"+KEY_WED+" = 'true';", null);
+        int count = 0;
+        if (cursor != null) count = cursor.getCount();
+        return count;
+    }
+    public int getTHUCount() {
+        Cursor cursor = sqlDB.rawQuery("select * from "+DATABASE_TABLE+" where +"+KEY_THU+" = 'true';", null);
+        int count = 0;
+        if (cursor != null) count = cursor.getCount();
+        return count;
+    }public int getFRICount() {
+        Cursor cursor = sqlDB.rawQuery("select * from "+DATABASE_TABLE+" where +"+KEY_FRI+" = 'true';", null);
+        int count = 0;
+        if (cursor != null) count = cursor.getCount();
+        return count;
+    }
+
 
     public boolean updateMilk(String undo_address, String address, String password, String milk, int number, String mon, String tue, String wed, String thu, String fri) {
         ContentValues values = new ContentValues();

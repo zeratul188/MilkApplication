@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private ListView listView;
     private Button btnReset, btnAdd;
-    private TextView txtEmpty;
+    private TextView txtEmpty, txtMax;
     private ArrayList<Delivery> deliveryList;
 
     private boolean added = false;
@@ -39,8 +40,9 @@ public class HomeFragment extends Fragment {
     private DeliveryDBAdapter deliveryDBAdapter;
     private DeliveryAdapter deliveryAdatper;
 
-    private AlertDialog alertDialog;
-    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog, edit_alertDialog;
+    private AlertDialog.Builder builder, edit_builder;
+    private View edit_view;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class HomeFragment extends Fragment {
         deliveryAdatper = new DeliveryAdapter(getActivity(), deliveryList, deliveryDBAdapter, txtEmpty, this);
         listView.setAdapter(deliveryAdatper);
 
+        txtMax = root.findViewById(R.id.txtMax);
+
         refresh();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,9 +82,45 @@ public class HomeFragment extends Fragment {
                         toast("'"+str+"배달 완료했습니다.", false);
                         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
                         else txtEmpty.setVisibility(View.INVISIBLE);
+                        deliveryDBAdapter.open();
+                        txtMax.setText("("+deliveryList.size()+"/"+deliveryDBAdapter.getCount()+")");
+                        deliveryDBAdapter.close();
                     }
                 });
                 builder.setNegativeButton("취소", null);
+                builder.setNeutralButton("금일 우유 수정", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        edit_view = getLayoutInflater().inflate(R.layout.editdialog, null);
+
+                        final EditText edtMilk = edit_view.findViewById(R.id.edtMilk);
+                        final EditText edtNumber = edit_view.findViewById(R.id.edtNumber);
+
+                        edtMilk.setText(deliveryList.get(index).getMilk());
+                        edtNumber.setText(Integer.toString(deliveryList.get(index).getNumber()));
+
+                        edit_builder = new AlertDialog.Builder(getActivity());
+                        edit_builder.setView(edit_view);
+                        edit_builder.setTitle("금일 우유 수정");
+                        edit_builder.setPositiveButton("수정", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (String.valueOf(edtMilk.getText()).equals("") || String.valueOf(edtNumber.getText()).equals("")) toast("우유 종류와 갯수 모두 입력해주십시오.", false);
+                                else {
+                                    deliveryList.get(index).setMilk(String.valueOf(edtMilk.getText()));
+                                    deliveryList.get(index).setNumber(Integer.parseInt(String.valueOf(edtNumber.getText())));
+                                    deliveryAdatper.notifyDataSetChanged();
+                                    toast("금일만 "+deliveryList.get(index).getAddress()+" 우유를 수정하였습니다.", false);
+                                }
+                            }
+                        });
+                        edit_builder.setNegativeButton("취소", null);
+
+                        edit_alertDialog = edit_builder.create();
+                        edit_alertDialog.setCancelable(false);
+                        edit_alertDialog.show();
+                    }
+                });
 
                 alertDialog = builder.create();
                 alertDialog.setCancelable(false);
@@ -97,12 +137,8 @@ public class HomeFragment extends Fragment {
                 builder.setPositiveButton("초기화", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deliveryList.clear();
-                        loadData();
-                        deliveryAdatper.notifyDataSetChanged();
+                        refresh();
                         toast("초기화되었습니다.", false);
-                        if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
-                        else txtEmpty.setVisibility(View.INVISIBLE);
                     }
                 });
                 builder.setNegativeButton("취소", null);
@@ -151,6 +187,9 @@ public class HomeFragment extends Fragment {
         deliveryAdatper.notifyDataSetChanged();
         if (deliveryList.isEmpty()) txtEmpty.setVisibility(View.VISIBLE);
         else txtEmpty.setVisibility(View.INVISIBLE);
+        deliveryDBAdapter.open();
+        txtMax.setText("("+deliveryList.size()+"/"+deliveryDBAdapter.getCount()+")");
+        deliveryDBAdapter.close();
     }
 
     private void loadData() {

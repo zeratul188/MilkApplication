@@ -81,7 +81,7 @@
             <EditText
                 android:id="@+id/edtMilk"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:hint="우유 종류"
                 android:fontFamily="@font/the140"

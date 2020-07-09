@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="20dp">
+    <EditText
+        android:id="@+id/edtMilk"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:hint="우유 종류"
+        android:fontFamily="@font/the140"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColorHint="#999999"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/customedit"
+        android:textSize="20sp"/>
+    <EditText
+        android:id="@+id/edtNumber"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:hint="우유 갯수"
+        android:fontFamily="@font/the140"
+        android:inputType="number"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColorHint="#999999"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/customedit"
+        android:textSize="20sp"/>
+</LinearLayout>

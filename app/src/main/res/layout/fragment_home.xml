@@ -26,6 +26,15 @@
             android:gravity="center"
             android:paddingTop="50dp"
             android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/txtMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(0/0)"
+            android:textSize="20sp"
+            android:textColor="#222222"
+            android:background="#80f0f0f0"
+            android:layout_gravity="bottom|center"/>
     </FrameLayout>
 
     <LinearLayout
