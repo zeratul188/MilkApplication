@@ -64,8 +64,8 @@ public class AddActivity extends AppCompatActivity {
                         edtNumber[index].setText("");
                         edtMilk[index].setEnabled(false);
                         edtNumber[index].setEnabled(false);
-                        edtMilk[index].setTextColor(Color.parseColor("#bbbbbb"));
-                        edtNumber[index].setTextColor(Color.parseColor("#bbbbbb"));
+                        edtMilk[index].setHintTextColor(Color.parseColor("#bbbbbb"));
+                        edtNumber[index].setHintTextColor(Color.parseColor("#bbbbbb"));
                     }
                 }
             });
